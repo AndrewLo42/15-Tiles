@@ -7,7 +7,6 @@ export default function Board( ) {
     // let initialConfiguration=
     const [board, setBoard] = useState([1,2,0,4,3,5,6,7,8,9,10,11,12,13,15,14])
     const [emptyTile, setEmpty ] = useState(board.indexOf(0))
-    const victoryBoard = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
 
     const inCol = (idx) => {
         return Math.abs(idx - emptyTile) >= 4 && emptyTile % 4 === idx % 4;
@@ -15,15 +14,6 @@ export default function Board( ) {
 
     const inRow = (idx) => {
         return Math.abs(idx - emptyTile) < 4 && Math.floor(idx / 4) === Math.floor(emptyTile / 4);
-    }
-
-    const checkTiles = () => {
-        for (let i = 0; i < board.length; i++) {
-          if(board[i] !== victoryBoard[i]) {
-                return false
-            }
-        }
-        return true;
     }
 
     const moveTiles = (idx) => {
@@ -76,11 +66,22 @@ export default function Board( ) {
     }
 
     useEffect(() => {
+      const victoryBoard = [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,0];
+      const checkTiles = () => {
+        for (let i = 0; i < board.length; i++) {
+          if(board[i] !== victoryBoard[i]) {
+                return false
+            }
+        }
+        return true;
+      }
+
         if (checkTiles(board)) {
             console.log("win")
             alert("you win!")
         }
     }, [board])
+
   return (
     <div className='board'>
         {renderTiles(board)}
