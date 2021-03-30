@@ -24,9 +24,13 @@ code {
 }
 
 .tile {
-  background-color: pink;
+  background-color: #f5f5dc;
   text-align: center;
   justify-content: center;
   padding: 50% auto;
   margin: 10px;
+  border-radius: 0px;
+  background: linear-gradient(145deg, #ffffeb, #ddddc6);
+  box-shadow:  28px 28px 68px #717165,
+              -28px -28px 68px #ffffff;
 }
